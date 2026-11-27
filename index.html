@@ -1,48 +1,97 @@
-<!doctype html>
-<html lang="pt-BR" data-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
-    <title>Modelo de Jogo — Jogos VR</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="app">
-      <header class="top">
-        <div>
-          <span class="kicker">Modelo</span>
-          <h1 id="title">Clique no Alvo</h1>
-          <p class="subtitle">Troque este jogo pelo seu. O contrato já está pronto.</p>
-        </div>
-        <button id="restart" class="btn" type="button">Reiniciar</button>
-      </header>
-
-      <main>
-        <div class="hud">
-          <span class="pill">Alvos: <strong id="score">0</strong>/<span id="total">10</span></span>
-          <span class="pill">Tempo: <strong id="timer">0,0s</strong></span>
-        </div>
-
-        <div id="board" class="board" aria-label="Área do jogo">
-          <p id="start-hint" class="start-hint">Clique no alvo para começar</p>
-        </div>
-      </main>
-
-      <footer class="bottom">
-        <p>Este é o arquivo <code>game.js</code>. Leia os comentários e adapte.</p>
-      </footer>
-    </div>
-
-    <div id="result" class="overlay" hidden>
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="result-title">
-        <div class="modal-icon" aria-hidden="true">🎯</div>
-        <h2 id="result-title">Muito bem!</h2>
-        <p id="result-text">Você concluiu o jogo.</p>
-        <button id="play-again" class="btn btn-primary full" type="button">Jogar de novo</button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gol do Jaozin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <!-- Cabeçalho com placar e controles -->
+    <header class="topo">
+      <h1>⚽ Gol do Jaozin</h1>
+      <div class="placar-info">
+        <span id="texto-rodada">Cobrança: 1 / 7</span>
+        <span id="texto-gols">Gols: 0</span>
+        <button id="btn-tema" class="btn-secundario" type="button" aria-label="Alternar tema claro ou escuro">
+          🌓 Tema
+        </button>
       </div>
-    </div>
+    </header>
 
-    <script src="game.js"></script>
-  </body>
+    <!-- Tela Inicial -->
+    <section id="tela-inicio" class="cartao">
+      <h2>Desafio dos Pênaltis</h2>
+      <p>Aprenda técnicas de chute e regras oficiais do futebol!</p>
+      <ul class="regras-lista">
+        <li>Leia a situação ou pergunta sobre o chute.</li>
+        <li>A mira vai passar pelas opções de resposta.</li>
+        <li>Aperte <strong>ESPAÇO</strong> (ou toque em <strong>CHUTAR</strong>) na resposta certa!</li>
+        <li>A cada gol, o <strong>goleiro fica maior</strong> e a mira fica mais rápida.</li>
+      </ul>
+      <button id="btn-iniciar" class="btn-principal" type="button">Começar Partida</button>
+    </section>
+
+    <!-- Tela do Jogo -->
+    <section id="tela-jogo" class="cartao escondido">
+      <!-- Cenário do Campo de Futebol -->
+      <div class="campo" id="campo-jogo">
+        <div class="arquibancada"></div>
+        <div class="trave">
+          <div class="rede"></div>
+          <!-- Goleiro que cresce a cada gol -->
+          <div id="goleiro" class="goleiro" aria-label="Goleiro">
+            <div class="cabeca-goleiro"></div>
+            <div class="corpo-goleiro">
+              <div class="braco esquerda"></div>
+              <div class="braco direita"></div>
+            </div>
+          </div>
+        </div>
+        <div class="area-grande"></div>
+        <div class="marca-penalti"></div>
+        <!-- Bola de futebol -->
+        <div id="bola" class="bola" aria-label="Bola de futebol"></div>
+      </div>
+
+      <!-- Pergunta de Educação Física -->
+      <div class="painel-pergunta">
+        <span class="etiqueta-tema" id="categoria-pergunta">Técnica de Chute</span>
+        <p id="enunciado-pergunta" class="enunciado">Carregando desafio...</p>
+      </div>
+
+      <!-- Opções por onde a mira passa -->
+      <div class="opcoes-container" id="lista-opcoes" role="list">
+        <!-- As 3 opções serão criadas pelo JavaScript -->
+      </div>
+
+      <!-- Retorno educativo após cada chute -->
+      <div id="caixa-feedback" class="feedback escondido" role="status" aria-live="polite">
+        <p id="texto-feedback"></p>
+        <button id="btn-proximo" class="btn-principal" type="button">Próxima Cobrança</button>
+      </div>
+
+      <!-- Botão principal de chute para celular e clique -->
+      <div class="controles-chute">
+        <button id="btn-chutar" class="btn-chutar" type="button">
+          ⚽ CHUTAR (Espaço)
+        </button>
+      </div>
+    </section>
+
+    <!-- Tela Final -->
+    <section id="tela-fim" class="cartao escondido">
+      <h2 id="titulo-fim">Fim de Jogo!</h2>
+      <p id="resumo-fim" class="resumo-final"></p>
+      <div class="estatisticas-finais">
+        <p><strong>Gols marcados:</strong> <span id="gols-finais">0</span> de 7</p>
+        <p><strong>Tamanho do goleiro:</strong> <span id="tamanho-goleiro-final">100%</span></p>
+      </div>
+      <button id="btn-reiniciar" class="btn-principal" type="button">Jogar Novamente</button>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
 </html>

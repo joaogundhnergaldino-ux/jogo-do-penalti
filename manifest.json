@@ -1,16 +1,16 @@
 {
-  "slug": "meu-jogo",
-  "title": "Nome do meu jogo",
-  "author": "Seu nome",
-  "authorClass": "Sua turma",
-  "discipline": "Matemática",
-  "grades": ["6º", "7º"],
-  "tags": ["palavra-chave", "outra-palavra"],
-  "description": "Uma frase curta que explica o que o jogo ensina.",
-  "instructions": "Como jogar, em uma ou duas frases.",
-  "duration": 5,
+  "slug": "gol-do-jaozin",
+  "title": "Gol do Jaozin",
+  "author": "João",
+  "authorClass": "8C - Robótica",
+  "discipline": "Educação Física",
+  "grades": ["6º ano", "7º ano", "8º ano", "9º ano"],
+  "tags": ["educação física", "futebol", "pênalti", "técnica de chute", "regras"],
+  "description": "Jogo de cobrança de pênaltis em que você aprende técnicas de chute e regras oficiais do futebol. A cada gol marcado, o goleiro cresce e fica mais difícil passar por ele.",
+  "instructions": "Leia a pergunta sobre técnica de chute ou regra do pênalti. Observe a mira passando pelas opções e aperte a barra de espaço (ou toque em CHUTAR) na resposta certa para marcar o gol.",
+  "duration": "2-4 min",
   "version": "1.0.0",
   "entry": "index.html",
   "cover": "cover.svg",
-  "createdAt": "2026-11-02"
+  "createdAt": "2026-11-27"
 }
